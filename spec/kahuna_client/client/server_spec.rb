@@ -4,20 +4,24 @@ require "json"
 describe KahunaClient::Client do
   describe "#send_event" do
 
-    subject {
-      client.send_event key:  app_key,
-                        dev_id: dev_id,
-                        env: environment,
-                        username: username,
-                        user_email: user_email,
-                        event: event,
-                        user_info: user_info
-    }
+    subject { client.send_event options }
 
     let(:client) {
       KahunaClient::Client.new app_id:  app_id,
                                app_key: app_key,
                                environment: environment
+    }
+
+    let(:options) {
+      {
+          key:  app_key,
+          dev_id: dev_id,
+          env: environment,
+          username: username,
+          user_email: user_email,
+          event: event,
+          user_info: user_info
+      }
     }
 
     let(:app_id) { "id" }

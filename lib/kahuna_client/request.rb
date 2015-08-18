@@ -27,10 +27,12 @@ module KahunaClient
     def request(method, path, options, raw=false)
       new_options = options.dup
       only_params = new_options.delete :only_params
-
+      puts "KAHUNA CLIENT only_params=#{only_params}"
       post_params = {:env => environment}
+
       if only_params
         post_params = post_params.merge new_options
+        puts "KAHUNA CLIENT changed post_params to #{post_params.inspect}"
       end
 
       response = connection(raw).send(method) do |request|
@@ -47,8 +49,10 @@ module KahunaClient
       end
       if raw
         response
+        puts "KAHUNA CLIENT response #{response}"
       else
         response.body
+        puts "KAHUNA CLIENT response #{response.body}"
       end
     end
 
