@@ -23,7 +23,6 @@ module KahunaClient
             :only_params => true
         }
 
-        puts "KAHUNA CLIENT send_path= #{send_path} and params=#{params.inspect}"
         post(send_path, params)
       end
 
