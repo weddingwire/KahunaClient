@@ -7,8 +7,8 @@ module KahunaClient
       # dev_id (e.g. dev_id = 12a217b6ui2) A unique id for the device.
       # env (e.g. env = p) Environment identifier. This identifies if you are hitting your sandbox account or production
       #                    account. The 2 possible value are "s" and "p".
-      # username (e.g. username = johnd1989) The globally unique username or user id of the user.
       # user_email (e.g. email = jdoe@usekahuna.com) Email Address of the User
+      # credential (e.g. '{ user_id : "1234567890"}')
       # event (e.g. event = start) Event Name
       # user_info (e.g. user_info = {'first_name': 'John', 'last_name': 'Doe', 'gender': 'm'})
       def send_event(options = {})
@@ -16,7 +16,7 @@ module KahunaClient
             :key => options[:key],
             :dev_id => options[:dev_id],
             :env => options[:env],
-            :username => options[:username],
+            :credentials => { user_id: options[:user_id] }.to_json,
             :user_email => options[:user_email],
             :event => options[:event],
             :user_info => options[:user_info],
