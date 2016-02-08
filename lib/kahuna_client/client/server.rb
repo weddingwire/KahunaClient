@@ -16,7 +16,7 @@ module KahunaClient
             :key => options[:key],
             :dev_id => options[:dev_id],
             :env => options[:env],
-            :credentials => { user_id: options[:user_id] }.to_json,
+            :credentials => { "user_id" => options[:user_id] },
             :user_email => options[:user_email],
             :event => options[:event],
             :user_info => options[:user_info],

@@ -44,7 +44,7 @@ describe KahunaClient::Client do
           key: app_key,
           dev_id: app_id,
           env: environment,
-          credentials: { user_id: user_id }.to_json,
+          credentials: { "user_id" => user_id },
           user_email: user_email,
           event: event,
           user_info: user_info,
@@ -53,13 +53,13 @@ describe KahunaClient::Client do
     }
 
     before do
-      stub_post("log?credentials=%7B%22user_id%22:%221234567890%22%7D&dev_id=12345678&env=s&event=signup&key=key&user_email=test@email.com&user_info%5Bfirst_name%5D=John&user_info%5Bgender%5D=m&user_info%5Blast_name%5D=Doe")
+      stub_post("log?credentials%5Buser_id%5D=1234567890&dev_id=12345678&env=s&event=signup&key=key&user_email=test@email.com&user_info%5Bfirst_name%5D=John&user_info%5Bgender%5D=m&user_info%5Blast_name%5D=Doe")
           .to_return(:body => fixture('success.json'))
     end
 
     it "get the correct resource" do
       subject
-      expect(a_post("log?credentials=%7B%22user_id%22:%221234567890%22%7D&dev_id=12345678&env=s&event=signup&key=key&user_email=test@email.com&user_info%5Bfirst_name%5D=John&user_info%5Bgender%5D=m&user_info%5Blast_name%5D=Doe")).to have_been_made.once
-    end  
+      expect(a_post("log?credentials%5Buser_id%5D=1234567890&dev_id=12345678&env=s&event=signup&key=key&user_email=test@email.com&user_info%5Bfirst_name%5D=John&user_info%5Bgender%5D=m&user_info%5Blast_name%5D=Doe")).to have_been_made.once
+    end
   end
 end
