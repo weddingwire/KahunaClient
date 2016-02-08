@@ -44,7 +44,7 @@ describe KahunaClient::Client do
           key: app_key,
           dev_id: app_id,
           env: environment,
-          credentials: { "user_id" => user_id },
+          credentials: "{'user_id':'#{user_id}'}",
           user_email: user_email,
           event: event,
           user_info: user_info,
