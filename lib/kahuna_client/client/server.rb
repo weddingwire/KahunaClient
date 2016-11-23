@@ -12,15 +12,6 @@ module KahunaClient
       # event (e.g. event = start) Event Name
       # user_info (e.g. user_info = {'first_name': 'John', 'last_name': 'Doe', 'gender': 'm'})
       def send_event(options = {})
-        events = if options[:events]
-                       options[:events].each do |key, obj|
-                         obj.each do |k,v|
-                           unless value.is_a? Array
-                             obj[k] = [v]
-                           end
-                         end
-                       end
-                     end
 
         params = {
             key: options[:key],
@@ -29,7 +20,7 @@ module KahunaClient
             username: options[:username],
             user_email: options[:user_email],
             event: options[:event],
-            events: events,
+            events: options[:events],
             user_info: options[:user_info],
             only_params: true
         }
