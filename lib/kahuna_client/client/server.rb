@@ -12,15 +12,18 @@ module KahunaClient
       # event (e.g. event = start) Event Name
       # user_info (e.g. user_info = {'first_name': 'John', 'last_name': 'Doe', 'gender': 'm'})
       def send_event(options = {})
+
         params = {
-            :key => options[:key],
-            :dev_id => options[:dev_id],
-            :env => options[:env],
-            :username => options[:username],
-            :user_email => options[:user_email],
-            :event => options[:event],
-            :user_info => options[:user_info],
-            :only_params => true
+            key: options[:key],
+            dev_id: options[:dev_id],
+            env: options[:env],
+            user_id: options[:user_id],
+            username: options[:username],
+            user_email: options[:user_email],
+            event: options[:event],
+            events: options[:events],
+            user_info: options[:user_info],
+            only_params: true
         }
 
         post(send_path, params)
