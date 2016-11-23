@@ -17,6 +17,7 @@ module KahunaClient
             key: options[:key],
             dev_id: options[:dev_id],
             env: options[:env],
+            user_id: options[:user_id],
             username: options[:username],
             user_email: options[:user_email],
             event: options[:event],
