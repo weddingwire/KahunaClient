@@ -9,40 +9,20 @@ describe KahunaClient::Client do
   describe ".push" do
     let(:campaign_conf) {
       {
-        target: {
-            username: "iamawesome1989",
-            email: "awesome@mail.com",
-            fbid: "42",
-            user_id: "789"
-        },
-        notification: {
-            alert: "Look at this Push!"
-        },
-        params: {
-            sale_id: "1234",
-            landing_page: "share_page"
-        },
-        config: {
-            start_time: 1382652322,
-            optimal_hours: 8,
-            influence_rate_limiting: true,
-            observe_rate_limiting: true
-        }
+        campaign_id: 'test',
+        cred_type: 'user_id'
       }
     }
     let(:recipient_list) {
       {
-        sale_id: "1234",
-        landing_page: "share_page"
+        k_to: [1,2,3,5]
       }
     }
     let(:default_params) {
       {
-        start_time: 1382652322,
-        optimal_hours: 4,
-        influence_rate_limiting: false,
-        observe_rate_limiting: false,
-        campaign_name: "New user campaign"
+        extra_parameters: {
+          test: 'value'
+        }
       }
     }
     let(:payload) {
