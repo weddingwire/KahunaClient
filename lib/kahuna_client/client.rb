@@ -7,5 +7,6 @@ module KahunaClient
     include KahunaClient::Client::Logs
     include KahunaClient::Client::UserAttribute
     include KahunaClient::Client::Server
+    include KahunaClient::Client::AdaptiveCampaign
   end
 end
