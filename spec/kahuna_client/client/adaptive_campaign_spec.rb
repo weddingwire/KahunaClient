@@ -1,4 +1,4 @@
-require File.expand_path('../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe KahunaClient::Client do
 
@@ -7,7 +7,7 @@ describe KahunaClient::Client do
   end
 
   describe ".push" do
-    let(:campaign_conf) {
+    let(:campaign_config) {
       {
         campaign_id: 'test',
         cred_type: 'user_id'
@@ -28,20 +28,20 @@ describe KahunaClient::Client do
     let(:payload) {
       {
         default_params: default_params,
-        campaign_conf: campaign_conf,
+        campaign_config: campaign_config,
         recipient_list: recipient_list
       }
     }
     before do
       # note here the env param
-      stub_post("campaign/adaptive?env=p").
+      stub_post("campaign/populate?env=p").
         with(body: payload).
         to_return(body: fixture("success.json"))
     end
 
     it "should get the correct resource" do
-      @client.adaptive_campaign(campaign_conf,recipient_list,default_params)
-      expect(a_post("campaign/adaptive?env=p").with(body: payload)).to have_been_made
+      @client.adaptive_campaign(campaign_config,recipient_list,default_params)
+      expect(a_post("campaign/populate?env=p").with(body: payload)).to have_been_made
     end
   end
 end

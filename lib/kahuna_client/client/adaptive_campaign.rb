@@ -16,9 +16,9 @@ module KahunaClient
       #                 that sets the push schedule for all the users you add.
       #
       #
-      def adaptive_campaign(campaign_conf, recipient_list, default_params = {})
+      def adaptive_campaign(campaign_config, recipient_list, default_params = {})
         options = {
-          campaign_conf: campaign_conf,
+          campaign_config: campaign_config,
           recipient_list: recipient_list,
           default_params: default_params
         }
@@ -28,7 +28,7 @@ module KahunaClient
       protected
 
       def adaptive_campaign_path
-        "campaign/adaptive"
+        "campaign/populate"
       end
     end
   end
