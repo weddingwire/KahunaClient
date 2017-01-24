@@ -5,9 +5,7 @@ describe KahunaClient::Client do
   describe "#send_event" do
 
     subject {
-      client.send_event key:  app_key,
-                        dev_id: dev_id,
-                        env: environment,
+      client.send_event dev_id: dev_id,
                         username: username,
                         user_email: user_email,
                         user_id: user_id,
@@ -18,7 +16,7 @@ describe KahunaClient::Client do
 
     let(:client) {
       KahunaClient::Client.new app_id:  app_id,
-                               app_key: app_key,
+                               secret_key: app_key,
                                environment: environment
     }
 
@@ -36,20 +34,6 @@ describe KahunaClient::Client do
           "first_name" => "John",
           "last_name" => "Doe",
           "gender" => "m"
-      }
-    }
-
-    let(:params) {
-      {
-          key: app_key,
-          dev_id: app_id,
-          env: environment,
-          username: username,
-          user_email: user_email,
-          event: event,
-          events: events,
-          user_info: user_info,
-          only_params: true
       }
     }
 
