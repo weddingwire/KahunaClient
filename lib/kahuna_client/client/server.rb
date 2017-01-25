@@ -26,7 +26,11 @@ module KahunaClient
             only_params: true
         }
 
-        post(send_path, params)
+        post(send_path, params, {
+          headers: {
+            'Content-Type' => 'application/x-www-form-urlencoded'
+          }
+        })
       end
 
       protected
