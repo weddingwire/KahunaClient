@@ -34,14 +34,18 @@ describe KahunaClient::Client do
     }
     before do
       # note here the env param
-      stub_post("campaign/populate?env=p").
-        with(body: payload).
-        to_return(body: fixture("success.json"))
+      stub_post("campaign/populate?env=p")
+        .with(body: payload, headers: content_type(:json))
+        .to_return(body: fixture("success.json"))
     end
 
     it "should get the correct resource" do
       @client.adaptive_campaign(campaign_config,recipient_list,default_params)
-      expect(a_post("campaign/populate?env=p").with(body: payload)).to have_been_made
+      expect(
+        a_post("campaign/populate?env=p")
+          .with(body: payload)
+          .with(headers: content_type(:json))
+      ).to have_been_made
     end
   end
 end

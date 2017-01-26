@@ -48,3 +48,14 @@ end
 def fixture(file)
   File.new(fixture_path + '/' + file)
 end
+
+def content_type(type)
+  case type
+  when :json
+    { 'Content-Type' => 'application/json' }
+  when :url_encoded
+    { 'Content-Type' => 'application/x-www-form-urlencoded' }
+  else
+    {}
+  end
+end

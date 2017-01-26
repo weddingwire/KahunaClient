@@ -28,13 +28,17 @@ describe KahunaClient::Client do
 
     before do
       stub_post('api/userattributes?env=p')
-        .with(:body => request_object)
-        .to_return(:body => fixture('success.json'))
+        .with(body: request_object, headers: content_type(:json))
+        .to_return(body: fixture('success.json'))
     end
 
     it "should get the correct resource" do
       @client.update([user_attribute])
-      expect(a_post("api/userattributes?env=p").with(:body => request_object)).to have_been_made.once
+      expect(
+        a_post("api/userattributes?env=p")
+          .with(body: request_object)
+          .with(headers: content_type(:json))
+      ).to have_been_made.once
     end
   end
 end
