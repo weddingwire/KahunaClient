@@ -15,15 +15,14 @@ module KahunaClient
 
         params = {
             key: options[:key] || secret_key,
-            dev_id: options[:dev_id],
             env: options[:env] || environment,
+            dev_id: options[:dev_id],
             user_id: options[:user_id],
             username: options[:username],
             user_email: options[:user_email],
             event: options[:event],
             events: options[:events],
-            user_info: options[:user_info],
-            only_params: true
+            user_info: options[:user_info]
         }
 
         post(send_path, params, {

@@ -13,12 +13,8 @@ module KahunaClient
     # Perform an HTTP request
     def request(method, path, params, options)
       new_params = params.dup
-      only_params = new_params.delete :only_params
 
       post_params = {:env => environment}
-      if only_params
-        post_params = post_params.merge new_params
-      end
 
       response = connection(options).send(method) do |request|
         case method
@@ -26,9 +22,7 @@ module KahunaClient
           request.url(path, new_params)
         when :post, :put
           request.path = path
-          if !only_params
-            request.body = new_params.to_json unless new_params.empty?
-          end
+          request.body = new_params.to_json unless new_params.empty?
           request.params = post_params
         end
       end
