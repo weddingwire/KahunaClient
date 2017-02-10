@@ -12,17 +12,16 @@ module KahunaClient
       # event (e.g. event = start) Event Name
       # user_info (e.g. user_info = {'first_name': 'John', 'last_name': 'Doe', 'gender': 'm'})
       def send_event(options = {})
+        cred_params = %i(user_id username user_email).freeze
 
         params = {
-            key: options[:key] || secret_key,
-            env: options[:env] || environment,
-            dev_id: options[:dev_id],
-            user_id: options[:user_id],
-            username: options[:username],
-            user_email: options[:user_email],
-            event: options[:event],
-            events: options[:events],
-            user_info: options[:user_info]
+          key:         options[:key] || secret_key,
+          env:         options[:env] || environment,
+          credentials: options.select {|k, v| cred_params.include?(k) && !v.nil?},
+          dev_id:      options[:dev_id],
+          event:       options[:event],
+          events:      options[:events],
+          user_info:   options[:user_info]
         }
 
         post(send_path, params, {

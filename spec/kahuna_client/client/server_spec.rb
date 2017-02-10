@@ -13,12 +13,16 @@ describe KahunaClient::Client do
   end
 
   describe "#send_event" do
-    let(:args) do
+    let(:user_identifiers) do
       {
-        dev_id: '12345678',
         user_id: 'asdf',
         username: 'test@email.com',
         user_email: 'test@email.com',
+      }
+    end
+    let(:args) do
+      {
+        dev_id: '12345678',
         event: 'signup',
         events: [{
           event: 'test',
@@ -44,7 +48,8 @@ describe KahunaClient::Client do
     let(:expected_body) do
       {
         key: config[:secret_key],
-        env: config[:environment]
+        env: config[:environment],
+        credentials: user_identifiers
       }.merge(args)
     end
 
@@ -55,7 +60,7 @@ describe KahunaClient::Client do
     end
 
     it "get the correct resource" do
-      subject.send_event args
+      subject.send_event args.merge(user_identifiers)
       expect(
         a_post("log?env=#{config[:environment]}")
         .with(headers: content_type(:url_encoded))
