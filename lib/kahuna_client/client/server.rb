@@ -12,17 +12,20 @@ module KahunaClient
       # event (e.g. event = start) Event Name
       # user_info (e.g. user_info = {'first_name': 'John', 'last_name': 'Doe', 'gender': 'm'})
       def send_event(options = {})
+        credentials              = {}
+
+        credentials[:user_id]    = options[:user_id] if options[:user_id]
+        credentials[:username]   = options[:username] if options[:username]
+        credentials[:user_email] = options[:user_email] if options[:user_email]
 
         params = {
-            key: options[:key] || secret_key,
-            env: options[:env] || environment,
-            dev_id: options[:dev_id],
-            user_id: options[:user_id],
-            username: options[:username],
-            user_email: options[:user_email],
-            event: options[:event],
-            events: options[:events],
-            user_info: options[:user_info]
+          key:         options[:key] || secret_key,
+          env:         options[:env] || environment,
+          dev_id:      options[:dev_id],
+          credentials: credentials,
+          event:       options[:event],
+          events:      options[:events],
+          user_info:   options[:user_info]
         }
 
         post(send_path, params, {
