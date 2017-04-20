@@ -30,16 +30,16 @@ describe KahunaClient::Client do
       expect(a_post("api/kahunalogs?env=p").with(body: payload)).to have_been_made
     end
 
-    it "should parse the response in a proper way" do
+    it "should parse the response in a proper way", :aggregate_failures do
       logs = @client.logs({timestamp:timestamp, number_of_records:5})
 
       # should have the proper fields
-      [:cursor, :more_records, :push].each do |key|
+      %w(cursor more_records push).each do |key|
         expect(logs.has_key?(key)).to be true
       end
 
       # push array should have the proper size
-      expect(logs.push.size).to be 5
+      expect(logs['push'].size).to be 5
     end
   end
 
