@@ -28,7 +28,7 @@ module KahunaClient
       protected
 
       def adaptive_campaign_path
-        "campaign/populate"
+        'api/campaign/populate'
       end
     end
   end
