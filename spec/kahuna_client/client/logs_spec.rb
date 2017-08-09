@@ -30,8 +30,8 @@ describe KahunaClient::Client do
       expect(a_post("api/kahunalogs?env=p").with(body: payload)).to have_been_made
     end
 
-    it "should parse the response in a proper way", :aggregate_failures do
-      logs = @client.logs({timestamp:timestamp, number_of_records:5})
+    it 'returns response as parse-able JSON string', :aggregate_failures do
+      logs = JSON.parse @client.logs({timestamp:timestamp, number_of_records:5})
 
       # should have the proper fields
       %w(cursor more_records push).each do |key|

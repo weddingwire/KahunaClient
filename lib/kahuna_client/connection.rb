@@ -22,7 +22,6 @@ module KahunaClient
         connection.request :basic_auth, secret_key, api_key
         connection.request :json
         connection.use Faraday::Request::UrlEncoded
-        connection.use Faraday::Response::ParseJson
         connection.use FaradayMiddleware::RaiseHttpException
         connection.use Faraday::Response::Logger, ::Logger.new(STDOUT), {bodies: true} if debug
         connection.adapter(adapter)
